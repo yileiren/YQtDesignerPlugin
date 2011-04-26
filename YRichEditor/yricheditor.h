@@ -1,9 +1,9 @@
 #ifndef YRICHEDITOR_H
 #define YRICHEDITOR_H
 
-#include <QtGui/QWidget>
+#include <QTextEdit>
 
-class YRichEditor : public QWidget
+class YRichEditor : public QTextEdit
 {
     Q_OBJECT
 

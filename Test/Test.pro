@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    testrichedit.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    testrichedit.h
 
 FORMS    += mainwindow.ui

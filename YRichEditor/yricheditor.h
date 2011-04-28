@@ -30,6 +30,34 @@ public:
      \param b true是加下划线，false是不加下划线
     */
     void wordUnderline(bool b);
+
+    /*!
+     \brief 给选中的文本设置字体，如果没有选中则设置光标所在处得文本。
+
+     \param f 字体名称
+    */
+    void wordFamily(const QString &f);
+
+    /*!
+     \brief 给选中的文本设置字体大小，如果没有选中则设置光标所在处的文本。
+
+     \param s 字体大小值
+    */
+    void wordSize(const int &s);
+
+    /*!
+     \brief 给选中的字体设置前景色，如果没有选中则设置光标所在处得文本。
+
+     \param c 颜色
+    */
+    void wordColor(const QColor &c);
+
+    /*!
+     \brief 给选中的字体设置背景色，如果没有选中则设置光标所在处的文本。
+
+     \param c
+    */
+    void wordBackgroundColor(const QColor &c);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

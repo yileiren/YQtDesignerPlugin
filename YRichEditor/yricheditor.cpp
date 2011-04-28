@@ -34,3 +34,38 @@ void YRichEditor::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
     cursor.mergeCharFormat(format);
     this->mergeCurrentCharFormat(format);
 }
+
+void YRichEditor::wordFamily(const QString &f)
+{
+    QTextCharFormat fmt;
+    fmt.setFontFamily(f);
+    this->mergeFormatOnWordOrSelection(fmt);
+}
+
+void YRichEditor::wordSize(const int &s)
+{
+    if (s > 0)
+    {
+        QTextCharFormat fmt;
+        fmt.setFontPointSize(s);
+        this->mergeFormatOnWordOrSelection(fmt);
+    }
+}
+
+void YRichEditor::wordColor(const QColor &c)
+{
+    if (!c.isValid())
+        return;
+    QTextCharFormat fmt;
+    fmt.setForeground(c);
+    this->mergeFormatOnWordOrSelection(fmt);
+}
+
+void YRichEditor::wordBackgroundColor(const QColor &c)
+{
+    if (!c.isValid())
+        return;
+    QTextCharFormat fmt;
+    fmt.setBackground(c);
+    this->mergeFormatOnWordOrSelection(fmt);
+}

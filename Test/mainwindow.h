@@ -23,6 +23,14 @@ private slots:
 
     void on_pushButton_2_clicked(bool checked);
 
+    void on_fontComboBox_textChanged(QString f);
+
+    void on_pushButton_3_clicked(bool checked);
+
+    void on_pushButton_4_clicked(bool checked);
+
+    void on_pushButton_5_clicked(bool checked);
+
 private:
     Ui::MainWindow *ui;
 };

@@ -27,3 +27,23 @@ void MainWindow::on_pushButton_2_clicked(bool checked)
 {
     this->ui->textEdit->wordBold(false);
 }
+
+void MainWindow::on_fontComboBox_textChanged(QString f)
+{
+    this->ui->textEdit->textFamily(f);
+}
+
+void MainWindow::on_pushButton_3_clicked(bool checked)
+{
+    this->ui->textEdit->textSize(50);
+}
+
+void MainWindow::on_pushButton_4_clicked(bool checked)
+{
+    this->ui->textEdit->textColor(QColor(255, 0, 0, 127));
+}
+
+void MainWindow::on_pushButton_5_clicked(bool checked)
+{
+    this->ui->textEdit->wordBackgroundColor(QColor(0, 0, 255, 127));
+}

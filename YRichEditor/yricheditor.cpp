@@ -70,7 +70,7 @@ void YRichEditor::wordBackgroundColor(const QColor &c)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-void YRichEditor::alignText(align a)
+void YRichEditor::alignText(const align a)
 {
     if (a == Left)
         this->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);

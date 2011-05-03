@@ -75,7 +75,7 @@ public:
 
      \param a 对齐方式
     */
-    void alignText(align a);
+    void alignText(const align a);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

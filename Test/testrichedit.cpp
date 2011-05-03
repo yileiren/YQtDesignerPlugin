@@ -69,3 +69,13 @@ void TestRichEdit::wordBackgroundColor(const QColor &c)
     fmt.setBackground(c);
     this->mergeFormatOnWordOrSelection(fmt);
 }
+
+void TestRichEdit::alignText(align a)
+{
+    if (a == Left)
+        this->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
+    else if (a == Center)
+        this->setAlignment(Qt::AlignHCenter);
+    else if (a == Right)
+        this->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+}

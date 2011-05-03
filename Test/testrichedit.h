@@ -7,6 +7,17 @@ class TestRichEdit : public QTextEdit
 {
     Q_OBJECT
 public:
+    /*!
+     \brief 文本对齐方式
+
+    */
+    enum align
+    {
+        Left, /*!< 左对齐 */
+        Right, /*!< 右对齐 */
+        Center /*!< 居中对齐 */
+    };
+
     explicit TestRichEdit(QWidget *parent = 0);
     /*!
      \brief 给选中的单词设置加粗，如果没选中则设置光标所在位置的单词。
@@ -56,6 +67,13 @@ public:
      \param c
     */
     void wordBackgroundColor(const QColor &c);
+
+    /*!
+     \brief 设置段落的对齐方式
+
+     \param a 对齐方式
+    */
+    void alignText(align a);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

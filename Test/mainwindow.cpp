@@ -47,3 +47,8 @@ void MainWindow::on_pushButton_5_clicked(bool checked)
 {
     this->ui->textEdit->wordBackgroundColor(QColor(0, 0, 255, 127));
 }
+
+void MainWindow::on_pushButton_6_clicked(bool checked)
+{
+    this->ui->textEdit->alignText(TestRichEdit::Center);
+}

@@ -74,7 +74,6 @@ public:
      \param a 对齐方式
     */
     void alignText(align a);
-    //测试
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

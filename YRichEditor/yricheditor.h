@@ -3,6 +3,10 @@
 
 #include <QTextEdit>
 
+/*!
+ \brief 富文本编辑控件
+
+*/
 class YRichEditor : public QTextEdit
 {
     Q_OBJECT
@@ -22,65 +26,135 @@ public:
     };
 
     /*!
-     \brief 给选中的单词设置加粗，如果没选中则设置光标所在位置的单词。
+     \brief 给选中的文本设置加粗，如果没选中则设置光标所在位置的文本。
 
      \param b true是加粗，false是不加粗
     */
     void wordBold(bool b);
 
     /*!
-     \brief 给选中的单词设置倾斜，如果没选中则设置光标所在位置的单词。
+     \brief 文本是否加粗
+
+     \return 加粗返回true，否则返回false
+    */
+    const bool getWordBold();
+
+    /*!
+     \brief 给选中的文本设置倾斜，如果没选中则设置光标所在位置的文本。
 
      \param b true是倾斜，false是不倾斜
+     \sa const bool getWordItalic()
     */
     void wordItalic(bool b);
 
     /*!
-     \brief 给选中的单词设置下划线，如果没选中则设置光标所在位置的单词。
+     \brief 文本是否倾斜
+
+     \return 倾斜返回true，否则返回false
+     \sa void wordItalic(bool b)
+    */
+    const bool getWordItalic();
+
+    /*!
+     \brief 给选中的文本设置下划线，如果没选中则设置光标所在位置的文本。
 
      \param b true是加下划线，false是不加下划线
+     \sa const bool getWordUnderline()
     */
     void wordUnderline(bool b);
+
+    /*!
+     \brief 获取文本是否加下划线
+
+     \return 加下划线返回true，否则返回false
+     \sa void wordUnderline(bool b)
+    */
+    const bool getWordUnderline();
 
     /*!
      \brief 给选中的文本设置字体，如果没有选中则设置光标所在处得文本。
 
      \param f 字体名称
+     \sa const QString getWordFamily()
     */
     void wordFamily(const QString &f);
+
+    /*!
+     \brief 获取文本字体
+
+     \return 字体
+     \sa void wordFamily(const QString &f)
+    */
+    const QString getWordFamily();
 
     /*!
      \brief 给选中的文本设置字体大小，如果没有选中则设置光标所在处的文本。
 
      \param s 字体大小值
+     \sa const int getWordSize()
     */
     void wordSize(const int &s);
+
+    /*!
+     \brief 获取文本字体大小
+
+     \return 字体大小
+     \sa void wordSize(const int &s)
+    */
+    const int getWordSize();
 
     /*!
      \brief 给选中的字体设置前景色，如果没有选中则设置光标所在处得文本。
 
      \param c 颜色
+     \sa const QColor & getWordColor()
     */
     void wordColor(const QColor &c);
 
     /*!
+     \brief 获取文本前景色
+
+     \return 前景色
+     \sa void wordColor(const QColor &c)
+    */
+    const QColor & getWordColor();
+
+    /*!
      \brief 给选中的字体设置背景色，如果没有选中则设置光标所在处的文本。
 
-     \param c
+     \param c 背景色
+     \sa const QColor & getWordBackgroundColor()
     */
     void wordBackgroundColor(const QColor &c);
+
+    /*!
+     \brief 获取文字背景色
+
+     \return 背景色
+     \sa void wordBackgroundColor(const QColor &c)
+    */
+    const QColor & getWordBackgroundColor();
 
     /*!
      \brief 设置段落的对齐方式
 
      \param a 对齐方式
+     \sa const YRichEditor::align getTextAlign()
     */
-    void alignText(const align a);
+    void textAlign(const align a);
+
+    /*!
+     \brief 获取光标处的文本对齐方式
+
+     \return 文本对齐方式
+     \sa void textAlign(const align a)
+    */
+    const YRichEditor::align getTextAlign();
 private:
     /*!
-     \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。
+     \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。
 
-     \param format 要合并的单词样式
+     \param format 要合并的文本样式
     */
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 };

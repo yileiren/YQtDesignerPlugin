@@ -12,6 +12,23 @@ void YRichEditor::wordBold(bool b)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
+const bool YRichEditor::getWordBold()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    const int f = cursor.charFormat().fontWeight();
+
+    if(f == QFont::Bold)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void YRichEditor::wordItalic(bool b)
 {
     QTextCharFormat fmt;
@@ -19,11 +36,27 @@ void YRichEditor::wordItalic(bool b)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
+const bool YRichEditor::getWordItalic()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    return cursor.charFormat().fontItalic();
+}
+
 void YRichEditor::wordUnderline(bool b)
 {
     QTextCharFormat fmt;
     fmt.setFontUnderline(b);
     this->mergeFormatOnWordOrSelection(fmt);
+}
+
+const bool YRichEditor::getWordUnderline()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    return cursor.charFormat().fontUnderline();
 }
 
 void YRichEditor::mergeFormatOnWordOrSelection(const QTextCharFormat &format)
@@ -42,6 +75,14 @@ void YRichEditor::wordFamily(const QString &f)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
+const QString YRichEditor::getWordFamily()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    return cursor.charFormat().fontFamily();
+}
+
 void YRichEditor::wordSize(const int &s)
 {
     if (s > 0)
@@ -50,6 +91,14 @@ void YRichEditor::wordSize(const int &s)
         fmt.setFontPointSize(s);
         this->mergeFormatOnWordOrSelection(fmt);
     }
+}
+
+const int YRichEditor::getWordSize()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    return cursor.charFormat().font().pointSize();
 }
 
 void YRichEditor::wordColor(const QColor &c)
@@ -70,7 +119,13 @@ void YRichEditor::wordBackgroundColor(const QColor &c)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-void YRichEditor::alignText(const align a)
+const QColor & YRichEditor::getWordBackgroundColor()
+{
+    QTextCursor cursor = this->textCursor();
+    return cursor.charFormat().background().color();
+}
+
+void YRichEditor::textAlign(const align a)
 {
     if (a == Left)
         this->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
@@ -78,4 +133,29 @@ void YRichEditor::alignText(const align a)
         this->setAlignment(Qt::AlignHCenter);
     else if (a == Right)
         this->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+}
+
+const YRichEditor::align YRichEditor::getTextAlign()
+{
+    Qt::Alignment al = this->alignment();
+    if (al & Qt::AlignLeft)
+    {
+        return Left;
+    }
+    else if (al & Qt::AlignHCenter)
+    {
+        return Center;
+    }
+    else
+    {
+        return Right;
+    }
+}
+
+const QColor & YRichEditor::getWordColor()
+{
+    QTextCursor cursor = this->textCursor();
+    if (!cursor.hasSelection())
+        cursor.select(QTextCursor::WordUnderCursor);
+    return cursor.charFormat().foreground().color();
 }

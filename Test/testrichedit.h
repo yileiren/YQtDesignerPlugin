@@ -69,7 +69,7 @@ public:
     void wordBackgroundColor(const QColor &c);
 
     /*!
-     \brief 设置段落的对齐方式
+     \brief 设置段落的对齐方式YRichEditor
 
      \param a 对齐方式
     */
@@ -80,8 +80,26 @@ public:
 
      \param r 表格行数
      \param c 表格列数
+     \sa void insertTable(const int &r, const int &c,const int &cs,const int &cp,
+                     const YRichEditor::align &a = YRichEditor::Center,
+                     const QColor &backGroundColor = QColor(0, 0, 0, 127))
     */
     void insertTable(const int &r,const int &c);
+
+    /*!
+     \brief 插入表格
+
+     \param r 表格行数
+     \param c 表格列数
+     \param cs 表格那边距
+     \param cp 表格外边距
+     \param a 对其方式，默认是剧中
+     \param backGroundColor 背景颜色
+     \sa void insertTable(const int &r,const int &c)
+    */
+    void insertTable(const int &r, const int &c,const int &cs,const int &cp,
+                     const TestRichEdit::align &a = TestRichEdit::Center,
+                     const QColor &backGroundColor = QColor(0, 0, 0, 0));
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

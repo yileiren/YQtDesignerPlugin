@@ -57,3 +57,8 @@ void MainWindow::on_pushButton_7_clicked(bool checked)
 {
     this->ui->textEdit->insertTable(6,3);
 }
+
+void MainWindow::on_pushButton_8_clicked(bool checked)
+{
+    this->ui->textEdit->insertTable(3,4,1,1);
+}

@@ -115,14 +115,27 @@
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>270</y>
+      <x>370</x>
+      <y>220</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>表格</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>220</y>
+      <width>121</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>非默认格式表格</string>
     </property>
    </widget>
   </widget>
@@ -132,7 +145,7 @@
      <x>0</x>
      <y>0</y>
      <width>616</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

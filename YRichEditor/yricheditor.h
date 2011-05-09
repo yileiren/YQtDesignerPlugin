@@ -189,6 +189,17 @@ public:
     void insertTable(const int &r, const int &c,const int &cs,const int &cp,
                      const YRichEditor::align &a = YRichEditor::Center,
                      const QColor &backGroundColor = QColor(0, 0, 0, 0));
+
+    /*!
+     \brief 获取光标所在位置的表格对象
+
+     \return 表格对象
+     \sa void insertTable(const int &r,const int &c),
+         void insertTable(const int &r, const int &c,const int &cs,const int &cp,
+                     const YRichEditor::align &a = YRichEditor::Center,
+                     const QColor &backGroundColor = QColor(0, 0, 0, 127))
+    */
+    QTextTable * getTalbe();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

@@ -151,3 +151,9 @@ void TestRichEdit::insertTable(const int &r, const int &c, const int &cs, const 
 
     cursor.endEditBlock();
 }
+
+QTextTable * TestRichEdit::getTalbe()
+{
+    QTextCursor cursor = this->textCursor();
+    return cursor.currentTable();
+}

@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QTextTable>
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -61,4 +64,19 @@ void MainWindow::on_pushButton_7_clicked(bool checked)
 void MainWindow::on_pushButton_8_clicked(bool checked)
 {
     this->ui->textEdit->insertTable(3,4,1,1);
+}
+
+void MainWindow::on_pushButton_9_clicked(bool checked)
+{
+    if(this->ui->textEdit->getTalbe() == NULL)
+    {
+        QMessageBox::information(this,tr("test"),tr("test"),QMessageBox::Ok);
+        return;
+    }
+    QTextTableFormat tableFormat;
+    tableFormat.setAlignment(Qt::AlignHCenter);
+    //tableFormat.setBackground(QColor("#e0e0e0"));
+    tableFormat.setCellPadding(4);
+    tableFormat.setCellSpacing(8);
+    this->ui->textEdit->getTalbe()->setFormat(tableFormat);
 }

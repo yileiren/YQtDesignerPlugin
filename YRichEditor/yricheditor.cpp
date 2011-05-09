@@ -272,3 +272,9 @@ void YRichEditor::insertTable(const int &r, const int &c, const int &cs, const i
     cursor.endEditBlock();
 }
 
+QTextTable * YRichEditor::getTalbe()
+{
+    QTextCursor cursor = this->textCursor();
+    return cursor.currentTable();
+}
+

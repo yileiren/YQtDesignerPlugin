@@ -203,3 +203,31 @@ const QTextListFormat::Style YRichEditor::getTextStyle()
         return QTextListFormat::ListStyleUndefined;
     }
 }
+
+void YRichEditor::insertTable(const int &r, const int &c)
+{
+    //获取光标
+    QTextCursor cursor = this->textCursor();
+    cursor.beginEditBlock();
+
+    //设置默认格式
+    QTextTableFormat tableFormat;
+    tableFormat.setAlignment(Qt::AlignHCenter);
+    //tableFormat.setBackground(QColor("#e0e0e0"));
+    tableFormat.setCellPadding(2);
+    tableFormat.setCellSpacing(4);
+
+    //设置默认列宽
+    QVector<QTextLength> constraints;
+    for(int i = 0;i < c;i++)
+    {
+        constraints << QTextLength(QTextLength::PercentageLength, 100.0 / c);
+    }
+
+    tableFormat.setColumnWidthConstraints(constraints);
+
+    //插入表格
+    cursor.insertTable(r, c, tableFormat);
+
+    cursor.endEditBlock();
+}

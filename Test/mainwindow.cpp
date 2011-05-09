@@ -52,3 +52,8 @@ void MainWindow::on_pushButton_6_clicked(bool checked)
 {
     this->ui->textEdit->alignText(TestRichEdit::Center);
 }
+
+void MainWindow::on_pushButton_7_clicked(bool checked)
+{
+    this->ui->textEdit->insertTable(6,3);
+}

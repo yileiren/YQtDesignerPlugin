@@ -166,6 +166,14 @@ public:
      \sa void textStyle(const QTextListFormat::Style &f)
     */
     const QTextListFormat::Style getTextStyle();
+
+    /*!
+     \brief 插入表格，表格样式使用默认样式
+
+     \param r 表格行数
+     \param c 表格列数
+    */
+    void insertTable(const int &r,const int &c);
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

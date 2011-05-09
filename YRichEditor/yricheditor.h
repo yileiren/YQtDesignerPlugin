@@ -150,6 +150,22 @@ public:
      \sa void textAlign(const align a)
     */
     const YRichEditor::align getTextAlign();
+
+    /*!
+     \brief 设置文本列表样式
+
+     \param f 样式
+     \sa const QTextListFormat::Style getTextStyle()
+    */
+    void textStyle(const QTextListFormat::Style &f);
+
+    /*!
+     \brief 获取文本列表样式
+
+     \return 样式
+     \sa void textStyle(const QTextListFormat::Style &f)
+    */
+    const QTextListFormat::Style getTextStyle();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

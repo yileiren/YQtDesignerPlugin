@@ -1,5 +1,7 @@
 #include "yricheditor.h"
 
+#include <QTextList>
+
 YRichEditor::YRichEditor(QWidget *parent) :
     QTextEdit(parent)
 {
@@ -158,4 +160,46 @@ const QColor & YRichEditor::getWordColor()
     if (!cursor.hasSelection())
         cursor.select(QTextCursor::WordUnderCursor);
     return cursor.charFormat().foreground().color();
+}
+
+void YRichEditor::textStyle(const QTextListFormat::Style &f)
+{
+    QTextCursor cursor = this->textCursor();
+    cursor.beginEditBlock();
+
+    QTextBlockFormat blockFmt = cursor.blockFormat();
+
+    QTextListFormat listFmt;
+
+    if (cursor.currentList())
+    {
+        listFmt = cursor.currentList()->format();
+    }
+    else
+    {
+        listFmt.setIndent(blockFmt.indent() + 1);
+        blockFmt.setIndent(0);
+        cursor.setBlockFormat(blockFmt);
+    }
+
+    listFmt.setStyle(f);
+
+    cursor.createList(listFmt);
+
+    cursor.endEditBlock();
+}
+
+const QTextListFormat::Style YRichEditor::getTextStyle()
+{
+    QTextCursor cursor = this->textCursor();
+    cursor.beginEditBlock();
+
+    if (cursor.currentList())
+    {
+        return cursor.currentList()->format().style();
+    }
+    else
+    {
+        return QTextListFormat::ListStyleUndefined;
+    }
 }

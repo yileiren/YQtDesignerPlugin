@@ -8,14 +8,14 @@ YRichEditor::YRichEditor(QWidget *parent) :
 {
 }
 
-void YRichEditor::wordBold(bool b)
+void YRichEditor::wordBold(const bool &b)
 {
     QTextCharFormat fmt;
     fmt.setFontWeight(b ? QFont::Bold : QFont::Normal);
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-const bool YRichEditor::getWordBold()
+bool YRichEditor::getWordBold()
 {
     QTextCursor cursor = this->textCursor();
     if (!cursor.hasSelection())
@@ -32,14 +32,14 @@ const bool YRichEditor::getWordBold()
     }
 }
 
-void YRichEditor::wordItalic(bool b)
+void YRichEditor::wordItalic(const bool &b)
 {
     QTextCharFormat fmt;
     fmt.setFontItalic(b);
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-const bool YRichEditor::getWordItalic()
+bool YRichEditor::getWordItalic()
 {
     QTextCursor cursor = this->textCursor();
     if (!cursor.hasSelection())
@@ -47,14 +47,14 @@ const bool YRichEditor::getWordItalic()
     return cursor.charFormat().fontItalic();
 }
 
-void YRichEditor::wordUnderline(bool b)
+void YRichEditor::wordUnderline(const bool &b)
 {
     QTextCharFormat fmt;
     fmt.setFontUnderline(b);
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-const bool YRichEditor::getWordUnderline()
+bool YRichEditor::getWordUnderline()
 {
     QTextCursor cursor = this->textCursor();
     if (!cursor.hasSelection())
@@ -78,7 +78,7 @@ void YRichEditor::wordFamily(const QString &f)
     this->mergeFormatOnWordOrSelection(fmt);
 }
 
-const QString YRichEditor::getWordFamily()
+QString YRichEditor::getWordFamily()
 {
     QTextCursor cursor = this->textCursor();
     if (!cursor.hasSelection())
@@ -96,7 +96,7 @@ void YRichEditor::wordSize(const int &s)
     }
 }
 
-const int YRichEditor::getWordSize()
+int YRichEditor::getWordSize()
 {
     QTextCursor cursor = this->textCursor();
     if (!cursor.hasSelection())
@@ -128,7 +128,7 @@ const QColor & YRichEditor::getWordBackgroundColor()
     return cursor.charFormat().background().color();
 }
 
-void YRichEditor::textAlign(const align a)
+void YRichEditor::textAlign(const align &a)
 {
     if (a == Left)
         this->setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
@@ -138,7 +138,7 @@ void YRichEditor::textAlign(const align a)
         this->setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
 }
 
-const YRichEditor::align YRichEditor::getTextAlign()
+YRichEditor::align YRichEditor::getTextAlign()
 {
     Qt::Alignment al = this->alignment();
     if (al & Qt::AlignLeft)
@@ -190,7 +190,7 @@ void YRichEditor::textStyle(const QTextListFormat::Style &f)
     cursor.endEditBlock();
 }
 
-const QTextListFormat::Style YRichEditor::getTextStyle()
+QTextListFormat::Style YRichEditor::getTextStyle()
 {
     QTextCursor cursor = this->textCursor();
     cursor.beginEditBlock();

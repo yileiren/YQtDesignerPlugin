@@ -39,31 +39,33 @@ public:
      \brief 给选中的文本设置加粗，如果没选中则设置光标所在位置的文本。
 
      \param b true是加粗，false是不加粗
+     \sa bool getWordBold()
     */
-    void wordBold(bool b);
+    void wordBold(const bool &b);
 
     /*!
      \brief 文本是否加粗
 
      \return 加粗返回true，否则返回false
+     \sa void wordBold(const bool &b)
     */
-    const bool getWordBold();
+    bool getWordBold();
 
     /*!
      \brief 给选中的文本设置倾斜，如果没选中则设置光标所在位置的文本。
 
      \param b true是倾斜，false是不倾斜
-     \sa const bool getWordItalic()
+     \sa bool getWordItalic()
     */
-    void wordItalic(bool b);
+    void wordItalic(const bool &b);
 
     /*!
      \brief 文本是否倾斜
 
      \return 倾斜返回true，否则返回false
-     \sa void wordItalic(bool b)
+     \sa void wordItalic(const bool &b)
     */
-    const bool getWordItalic();
+    bool getWordItalic();
 
     /*!
      \brief 给选中的文本设置下划线，如果没选中则设置光标所在位置的文本。
@@ -71,7 +73,7 @@ public:
      \param b true是加下划线，false是不加下划线
      \sa const bool getWordUnderline()
     */
-    void wordUnderline(bool b);
+    void wordUnderline(const bool &b);
 
     /*!
      \brief 获取文本是否加下划线
@@ -79,13 +81,13 @@ public:
      \return 加下划线返回true，否则返回false
      \sa void wordUnderline(bool b)
     */
-    const bool getWordUnderline();
+    bool getWordUnderline();
 
     /*!
      \brief 给选中的文本设置字体，如果没有选中则设置光标所在处得文本。
 
      \param f 字体名称
-     \sa const QString getWordFamily()
+     \sa QString getWordFamily()
     */
     void wordFamily(const QString &f);
 
@@ -95,13 +97,13 @@ public:
      \return 字体
      \sa void wordFamily(const QString &f)
     */
-    const QString getWordFamily();
+    QString getWordFamily();
 
     /*!
      \brief 给选中的文本设置字体大小，如果没有选中则设置光标所在处的文本。
 
      \param s 字体大小值
-     \sa const int getWordSize()
+     \sa int getWordSize()
     */
     void wordSize(const int &s);
 
@@ -111,7 +113,7 @@ public:
      \return 字体大小
      \sa void wordSize(const int &s)
     */
-    const int getWordSize();
+    int getWordSize();
 
     /*!
      \brief 给选中的字体设置前景色，如果没有选中则设置光标所在处得文本。
@@ -149,23 +151,23 @@ public:
      \brief 设置段落的对齐方式
 
      \param a 对齐方式
-     \sa const YRichEditor::align getTextAlign()
+     \sa YRichEditor::align getTextAlign()
     */
-    void textAlign(const align a);
+    void textAlign(const align &a);
 
     /*!
      \brief 获取光标处的文本对齐方式
 
      \return 文本对齐方式
-     \sa void textAlign(const align a)
+     \sa void textAlign(const align &a)
     */
-    const YRichEditor::align getTextAlign();
+    YRichEditor::align getTextAlign();
 
     /*!
      \brief 设置文本列表样式Qt
 
      \param f 样式
-     \sa const QTextListFormat::Style getTextStyle()
+     \sa QTextListFormat::Style getTextStyle()
     */
     void textStyle(const QTextListFormat::Style &f);
 
@@ -175,7 +177,7 @@ public:
      \return 样式
      \sa void textStyle(const QTextListFormat::Style &f)
     */
-    const QTextListFormat::Style getTextStyle();
+    QTextListFormat::Style getTextStyle();
 
     /*!
      \brief 插入表格

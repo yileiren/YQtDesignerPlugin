@@ -204,33 +204,6 @@ const QTextListFormat::Style YRichEditor::getTextStyle()
     }
 }
 
-void YRichEditor::insertTable(const int &r, const int &c)
-{
-    //获取光标
-    QTextCursor cursor = this->textCursor();
-    cursor.beginEditBlock();
-
-    //设置默认格式
-    QTextTableFormat tableFormat;
-    tableFormat.setAlignment(Qt::AlignHCenter);
-    tableFormat.setCellPadding(2);
-    tableFormat.setCellSpacing(4);
-
-    //设置默认列宽
-    QVector<QTextLength> constraints;
-    for(int i = 0;i < c;i++)
-    {
-        constraints << QTextLength(QTextLength::PercentageLength, 100.0 / c);
-    }
-
-    tableFormat.setColumnWidthConstraints(constraints);
-
-    //插入表格
-    cursor.insertTable(r, c, tableFormat);
-
-    cursor.endEditBlock();
-}
-
 void YRichEditor::insertTable(const int &r, const int &c, const int &cs, const int &cp,
                                const YRichEditor::align &a,
                                const QColor &backGroundColor)

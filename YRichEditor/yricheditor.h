@@ -168,25 +168,17 @@ public:
     const QTextListFormat::Style getTextStyle();
 
     /*!
-     \brief 插入表格，表格样式使用默认样式
-
-     \param r 表格行数
-     \param c 表格列数
-    */
-    void insertTable(const int &r,const int &c);
-
-    /*!
      \brief 插入表格
 
      \param r 表格行数
      \param c 表格列数
-     \param cs 表格那边距
-     \param cp 表格外边距
+     \param cs 表格那边距，默认值是1
+     \param cp 表格外边距，默认值是1
      \param a 对其方式，默认是剧中
      \param backGroundColor 背景颜色
-     \sa void insertTable(const int &r,const int &c)
+     \sa QTextTable * getTalbe()
     */
-    void insertTable(const int &r, const int &c,const int &cs,const int &cp,
+    void insertTable(const int &r, const int &c,const int &cs = 1,const int &cp = 1,
                      const YRichEditor::align &a = YRichEditor::Center,
                      const QColor &backGroundColor = QColor(0, 0, 0, 0));
 
@@ -194,10 +186,9 @@ public:
      \brief 获取光标所在位置的表格对象
 
      \return 表格对象
-     \sa void insertTable(const int &r,const int &c),
-         void insertTable(const int &r, const int &c,const int &cs,const int &cp,
+     \sa void insertTable(const int &r, const int &c,const int &cs = 1,const int &cp = 1,
                      const YRichEditor::align &a = YRichEditor::Center,
-                     const QColor &backGroundColor = QColor(0, 0, 0, 127))
+                     const QColor &backGroundColor = QColor(0, 0, 0, 0))
     */
     QTextTable * getTalbe();
 private:

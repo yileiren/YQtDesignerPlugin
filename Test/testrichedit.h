@@ -160,7 +160,7 @@ public:
     /*!
      \brief 移除光标所在处或选中的行
 
-     \sa void removeRows(const int &r,const int &num)
+     \sa void removeRows(const int &r,const int &num),void removeColumns()
     */
     void removeRows();
 
@@ -169,9 +169,25 @@ public:
 
      \param r 开始的行号（从0开始）
      \param num 行数
-     \sa void removeRows()
+     \sa void removeRows(),void removeColumns()
     */
     void removeRows(const int &r,const int &num);
+
+    /*!
+     \brief 移除光标所在处或选中的列
+
+     \sa void removeColumns(const int &c,const int &num),void removeRows(),void removeRows(const int &r,const int &num)
+    */
+    void removeColumns();
+
+    /*!
+     \brief 移除光标所在处表格的指定列
+
+     \param c 开始的列号（从0开始）
+     \param num 列数
+     \sa void removeColumns(),void removeRows(),void removeRows(const int &r,const int &num)
+    */
+    void removeColumns(const int &c,const int &num);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

@@ -70,5 +70,5 @@ void MainWindow::on_pushButton_8_clicked(bool checked)
 
 void MainWindow::on_pushButton_9_clicked(bool checked)
 {
-    this->ui->textEdit->removeRows(1,1);
+    this->ui->textEdit->removeColumns(2,1);
 }

@@ -317,3 +317,38 @@ void YRichEditor::removeRows(const int &r, const int &num)
         this->getTalbe()->removeRows(r,num);
     }
 }
+
+void YRichEditor::removeColumns()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的行
+            YRichEditor::selectedCells cells = this->getSelectedCells();
+            if(cells.firstColumn >= 0 && cells.numColumns > 0)
+            {
+                this->getTalbe()->removeColumns(cells.firstColumn,cells.numColumns);
+            }
+        }
+        else
+        {
+            //光标所在行
+            YRichEditor::positionCell cell = this->getPositionCell();
+            if(cell.column >= 0)
+            {
+                this->getTalbe()->removeColumns(cell.column,1);
+            }
+        }
+    }
+}
+
+void YRichEditor::removeColumns(const int &c, const int &num)
+{
+    if(this->getTalbe() != NULL)
+    {
+        this->getTalbe()->removeColumns(c,num);
+    }
+}
+

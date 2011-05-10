@@ -2,6 +2,7 @@
 #define TESTRICHEDIT_H
 
 #include <QTextEdit>
+#include <vector>
 
 class TestRichEdit : public QTextEdit
 {
@@ -16,6 +17,16 @@ public:
         Left, /*!< 左对齐 */
         Right, /*!< 右对齐 */
         Center /*!< 居中对齐 */
+    };
+
+    /*!
+     \brief 光标所在的单元格行号和列号
+
+    */
+    struct positionCell
+    {
+        int row;  /*!< 行号 */
+        int column; /*!< 列号 */
     };
 
     explicit TestRichEdit(QWidget *parent = 0);
@@ -112,6 +123,20 @@ public:
                      const QColor &backGroundColor = QColor(0, 0, 0, 127))
     */
     QTextTable * getTalbe();
+
+    /*!
+     \brief 获取选中的行号集合
+
+     \return 选中的行号集合
+    */
+    const std::vector<int> getSelectedRowNums();
+
+    /*!
+     \brief 获取光标所在处单元格的行号和列号，-1表式光标所在处不存在单元格
+
+     \return 指向的单元格对象
+    */
+    const TestRichEdit::positionCell getPositionCell();
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

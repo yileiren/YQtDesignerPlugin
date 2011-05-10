@@ -26,6 +26,16 @@ public:
     };
 
     /*!
+     \brief 光标所在的单元格行号和列号
+
+    */
+    struct positionCell
+    {
+        int row;  /*!< 行号 */
+        int column; /*!< 列号 */
+    };
+
+    /*!
      \brief 给选中的文本设置加粗，如果没选中则设置光标所在位置的文本。
 
      \param b true是加粗，false是不加粗
@@ -191,6 +201,13 @@ public:
                      const QColor &backGroundColor = QColor(0, 0, 0, 0))
     */
     QTextTable * getTalbe();
+
+    /*!
+     \brief 获取光标所在处单元格的行号和列号，-1表式光标所在处不存在单元格
+
+     \return 指向的单元格对象
+    */
+    const YRichEditor::positionCell getPositionCell();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

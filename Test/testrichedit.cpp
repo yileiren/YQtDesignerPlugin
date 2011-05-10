@@ -1,6 +1,7 @@
 #include "testrichedit.h"
 
 #include <QTextFrame>
+#include <QTextTableCell>
 
 TestRichEdit::TestRichEdit(QWidget *parent) :
     QTextEdit(parent)
@@ -156,4 +157,33 @@ QTextTable * TestRichEdit::getTalbe()
 {
     QTextCursor cursor = this->textCursor();
     return cursor.currentTable();
+}
+
+const std::vector<int> TestRichEdit::getSelectedRowNums()
+{
+    std::vector<int> selectedRowNums;
+
+    return selectedRowNums;
+}
+
+const TestRichEdit::positionCell TestRichEdit::getPositionCell()
+{
+    //设置单元格默认值为-1行-1列
+    TestRichEdit::positionCell pc;
+    pc.row = -1;
+    pc.column = -1;
+
+    //获取光标所在位置的表格
+    QTextCursor cursor = this->textCursor();
+    QTextTable * tb = cursor.currentTable();
+    if(tb != NULL)
+    {
+        //获取光标所在位置的单元格
+        QTextTableCell tc = tb->cellAt(cursor);
+
+        pc.row = tc.row();
+        pc.column = tc.column();
+    }
+
+    return pc;
 }

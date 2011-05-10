@@ -1,6 +1,7 @@
 #include "yricheditor.h"
 
 #include <QTextList>
+#include <QTextTableCell>
 
 YRichEditor::YRichEditor(QWidget *parent) :
     QTextEdit(parent)
@@ -251,3 +252,24 @@ QTextTable * YRichEditor::getTalbe()
     return cursor.currentTable();
 }
 
+const YRichEditor::positionCell YRichEditor::getPositionCell()
+{
+    //设置单元格默认值为-1行-1列
+    YRichEditor::positionCell pc;
+    pc.row = -1;
+    pc.column = -1;
+
+    //获取光标所在位置的表格
+    QTextCursor cursor = this->textCursor();
+    QTextTable * tb = cursor.currentTable();
+    if(tb != NULL)
+    {
+        //获取光标所在位置的单元格
+        QTextTableCell tc = tb->cellAt(cursor);
+
+        pc.row = tc.row();
+        pc.column = tc.column();
+    }
+
+    return pc;
+}

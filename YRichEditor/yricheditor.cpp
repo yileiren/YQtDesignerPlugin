@@ -283,3 +283,37 @@ YRichEditor::selectedCells YRichEditor::getSelectedCells()
     c.selectedTableCells(&cells.firstRow,&cells.numRows,&cells.firstColumn,&cells.numColumns);
     return cells;
 }
+
+void YRichEditor::removeRows()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的行
+            YRichEditor::selectedCells cells = this->getSelectedCells();
+            if(cells.firstRow >= 0 && cells.numRows > 0)
+            {
+                this->getTalbe()->removeRows(cells.firstRow,cells.numRows);
+            }
+        }
+        else
+        {
+            //光标所在行
+            YRichEditor::positionCell cell = this->getPositionCell();
+            if(cell.row >= 0)
+            {
+                this->getTalbe()->removeRows(cell.row,1);
+            }
+        }
+    }
+}
+
+void YRichEditor::removeRows(const int &r, const int &num)
+{
+    if(this->getTalbe() != NULL)
+    {
+        this->getTalbe()->removeRows(r,num);
+    }
+}

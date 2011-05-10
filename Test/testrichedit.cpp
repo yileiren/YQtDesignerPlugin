@@ -198,3 +198,37 @@ TestRichEdit::selectedCells TestRichEdit::getSelectedCells()
     c.selectedTableCells(&cells.firstRow,&cells.numRows,&cells.firstColumn,&cells.numColumns);
     return cells;
 }
+
+void TestRichEdit::removeRows()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的行
+            TestRichEdit::selectedCells cells = this->getSelectedCells();
+            if(cells.firstRow >= 0 && cells.numRows > 0)
+            {
+                this->getTalbe()->removeRows(cells.firstRow,cells.numRows);
+            }
+        }
+        else
+        {
+            //光标所在行
+            TestRichEdit::positionCell cell = this->getPositionCell();
+            if(cell.row >= 0)
+            {
+                this->getTalbe()->removeRows(cell.row,1);
+            }
+        }
+    }
+}
+
+void TestRichEdit::removeRows(const int &r, const int &num)
+{
+    if(this->getTalbe() != NULL)
+    {
+        this->getTalbe()->removeRows(r,num);
+    }
+}

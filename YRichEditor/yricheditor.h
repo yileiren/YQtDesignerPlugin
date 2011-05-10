@@ -229,6 +229,22 @@ public:
      \return 选中的单元格行列，-1表式没有选中
     */
     YRichEditor::selectedCells getSelectedCells();
+
+    /*!
+     \brief 移除光标所在处或选中的行
+
+     \sa void removeRows(const int &r,const int &num)
+    */
+    void removeRows();
+
+    /*!
+     \brief 移除光标所在处表格的指定行
+
+     \param r 开始的行号（从0开始）
+     \param num 行数
+     \sa void removeRows()
+    */
+    void removeRows(const int &r,const int &num);
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

@@ -70,5 +70,5 @@ void MainWindow::on_pushButton_8_clicked(bool checked)
 
 void MainWindow::on_pushButton_9_clicked(bool checked)
 {
-    TestRichEdit::selectedCells c = this->ui->textEdit->getSelectedCells();
+    this->ui->textEdit->removeRows(1,1);
 }

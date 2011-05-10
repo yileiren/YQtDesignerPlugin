@@ -252,7 +252,7 @@ QTextTable * YRichEditor::getTalbe()
     return cursor.currentTable();
 }
 
-const YRichEditor::positionCell YRichEditor::getPositionCell()
+YRichEditor::positionCell YRichEditor::getPositionCell()
 {
     //设置单元格默认值为-1行-1列
     YRichEditor::positionCell pc;
@@ -272,4 +272,14 @@ const YRichEditor::positionCell YRichEditor::getPositionCell()
     }
 
     return pc;
+}
+
+YRichEditor::selectedCells YRichEditor::getSelectedCells()
+{
+    YRichEditor::selectedCells cells;
+
+    //获取选中的单元格
+    QTextCursor c = this->textCursor();
+    c.selectedTableCells(&cells.firstRow,&cells.numRows,&cells.firstColumn,&cells.numColumns);
+    return cells;
 }

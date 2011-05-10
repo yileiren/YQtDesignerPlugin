@@ -187,3 +187,14 @@ const TestRichEdit::positionCell TestRichEdit::getPositionCell()
 
     return pc;
 }
+
+
+TestRichEdit::selectedCells TestRichEdit::getSelectedCells()
+{
+    TestRichEdit::selectedCells cells;
+
+    //获取选中的单元格
+    QTextCursor c = this->textCursor();
+    c.selectedTableCells(&cells.firstRow,&cells.numRows,&cells.firstColumn,&cells.numColumns);
+    return cells;
+}

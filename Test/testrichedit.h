@@ -29,6 +29,18 @@ public:
         int column; /*!< 列号 */
     };
 
+    /*!
+     \brief 选中的单元格
+
+    */
+    struct selectedCells
+    {
+        int firstRow; /*!< 选中的单元格第一行行号 */
+        int numRows; /*!< 选中的行数 */
+        int firstColumn; /*!< 选中的单元格第一列列号 */
+        int numColumns; /*!< 选中的列数 */
+    };
+
     explicit TestRichEdit(QWidget *parent = 0);
     /*!
      \brief 给选中的单词设置加粗，如果没选中则设置光标所在位置的单词。
@@ -137,6 +149,13 @@ public:
      \return 指向的单元格对象
     */
     const TestRichEdit::positionCell getPositionCell();
+
+    /*!
+     \brief 获取选中的单元格
+
+     \return 选中的单元格行列，-1表式没有选中
+    */
+    TestRichEdit::selectedCells getSelectedCells();
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

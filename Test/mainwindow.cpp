@@ -70,7 +70,5 @@ void MainWindow::on_pushButton_8_clicked(bool checked)
 
 void MainWindow::on_pushButton_9_clicked(bool checked)
 {
-    TestRichEdit::positionCell p = this->ui->textEdit->getPositionCell();
-    p.row = 1;
-    QMessageBox::information(this,tr("test"),QString("%1").arg(this->ui->textEdit->getPositionCell().row),QMessageBox::Ok);
+    TestRichEdit::selectedCells c = this->ui->textEdit->getSelectedCells();
 }

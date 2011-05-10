@@ -36,6 +36,18 @@ public:
     };
 
     /*!
+     \brief 选中的单元格
+
+    */
+    struct selectedCells
+    {
+        int firstRow; /*!< 选中的单元格第一行行号 */
+        int numRows; /*!< 选中的行数 */
+        int firstColumn; /*!< 选中的单元格第一列列号 */
+        int numColumns; /*!< 选中的列数 */
+    };
+
+    /*!
      \brief 给选中的文本设置加粗，如果没选中则设置光标所在位置的文本。
 
      \param b true是加粗，false是不加粗
@@ -209,7 +221,14 @@ public:
 
      \return 指向的单元格对象
     */
-    const YRichEditor::positionCell getPositionCell();
+    YRichEditor::positionCell getPositionCell();
+
+    /*!
+     \brief 获取选中的单元格
+
+     \return 选中的单元格行列，-1表式没有选中
+    */
+    YRichEditor::selectedCells getSelectedCells();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

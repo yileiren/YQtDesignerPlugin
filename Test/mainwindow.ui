@@ -148,7 +148,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>获取表格</string>
+     <string>插入行</string>
     </property>
    </widget>
   </widget>
@@ -158,7 +158,7 @@
      <x>0</x>
      <y>0</y>
      <width>616</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

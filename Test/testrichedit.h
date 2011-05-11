@@ -174,6 +174,16 @@ public:
     void removeRows(const int &r,const int &num);
 
     /*!
+     \brief 在表格中插入行
+
+     \param r 行号
+     \param num 行数
+     \param back 是否在行后插入，true是再后面插，false是在前面插
+     \sa void removeRows(),void removeRows(const int &r,const int &num)
+    */
+    void insertRows(const int &r,const int &num,const bool &back = true);
+
+    /*!
      \brief 移除光标所在处或选中的列
 
      \sa void removeColumns(const int &c,const int &num),void removeRows(),void removeRows(const int &r,const int &num)
@@ -188,6 +198,15 @@ public:
      \sa void removeColumns(),void removeRows(),void removeRows(const int &r,const int &num)
     */
     void removeColumns(const int &c,const int &num);
+
+    /*!
+     \brief 在表格中插入列
+
+     \param c 列号
+     \param num 列数
+     \param back 是否在后面插入，true是在后面，false是在前面
+    */
+    void insertColumns(const int &c,const int &num,const bool &back = true);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

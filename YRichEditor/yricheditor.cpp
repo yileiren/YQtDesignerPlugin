@@ -352,3 +352,21 @@ void YRichEditor::removeColumns(const int &c, const int &num)
     }
 }
 
+void YRichEditor::insertRows(const int &r, const int &num, const bool &back)
+{
+    if(this->getTalbe() != NULL)
+    {
+        YRichEditor::positionCell cell = this->getPositionCell();
+        if(cell.row >= 0 && r >= 0 && r <= cell.row && r > 0)
+        {
+            if(back)
+            {
+                this->getTalbe()->insertRows(r + 1,num);
+            }
+            else
+            {
+                this->getTalbe()->insertRows(r,num);
+            }
+        }
+    }
+}

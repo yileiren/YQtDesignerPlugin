@@ -266,3 +266,52 @@ void TestRichEdit::removeColumns(const int &c, const int &num)
         this->getTalbe()->removeColumns(c,num);
     }
 }
+
+void TestRichEdit::insertRows(const int &r, const int &num, const bool &back)
+{
+    if(this->getTalbe() != NULL)
+    {
+        TestRichEdit::positionCell cell = this->getPositionCell();
+        if(cell.row >= 0 && r >= 0 && r <= cell.row && r > 0)
+        {
+            if(back)
+            {
+                this->getTalbe()->insertRows(r + 1,num);
+            }
+            else
+            {
+                this->getTalbe()->insertRows(r,num);
+            }
+        }
+    }
+}
+
+void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
+{
+    if(this->getTalbe() != NULL)
+    {
+        TestRichEdit::positionCell cell = this->getPositionCell();
+        if(cell.column >= 0 && c >= 0 && c <= cell.column && num > 0)
+        {
+            //重新设置列宽
+            QTextTableFormat f = this->getTalbe()->format();
+            QVector<QTextLength> v = f.columnWidthConstraints();
+            for(int i = 0;i < v.count();i++)
+            {
+                if(v[i].type() == QTextLength.PercentageLength)
+                {
+                    QTextLength l(QTextLength.PercentageLength, v[i].value() * (100.0 / (v.count() + num) * v[i].value() / 100.0));
+                }
+            }
+
+            if(back)
+            {
+                this->getTalbe()->insertColumns(c + 1,num);
+            }
+            else
+            {
+                this->getTalbe()->insertColumns(c,num);
+            }
+        }
+    }
+}

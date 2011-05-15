@@ -296,13 +296,40 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
             //重新设置列宽
             QTextTableFormat f = this->getTalbe()->format();
             QVector<QTextLength> v = f.columnWidthConstraints();
+            QVector<QTextLength> nv;
             for(int i = 0;i < v.count();i++)
             {
-                if(v[i].type() == QTextLength.PercentageLength)
+                if(v.at(i).type() == QTextLength::PercentageLength)
                 {
-                    QTextLength l(QTextLength.PercentageLength, v[i].value() * (100.0 / (v.count() + num) * v[i].value() / 100.0));
+                    QTextLength l(QTextLength::PercentageLength,v[i].rawValue() * (100.0 / (v.count() + num) / v[i].rawValue()));
+                    nv.push_back(l);
                 }
+                else
+                {
+                    nv.push_back(v.at(i));
+                }
+
+                if(back && i == c)
+                {
+                    for(int j = 0;j < num;j++)
+                    {
+                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
+                        nv.push_back(nl);
+                    }
+                }
+                else if(!back && i + 1 == c)
+                {
+                    for(int j = 0;j < num;j++)
+                    {
+                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
+                        nv.push_back(nl);
+                    }
+                }
+
             }
+
+            f.setColumnWidthConstraints(nv);
+            this->getTalbe()->setFormat(f);
 
             if(back)
             {

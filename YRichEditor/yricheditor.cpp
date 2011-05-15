@@ -370,3 +370,60 @@ void YRichEditor::insertRows(const int &r, const int &num, const bool &back)
         }
     }
 }
+
+void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
+{
+    if(this->getTalbe() != NULL)
+    {
+        YRichEditor::positionCell cell = this->getPositionCell();
+        if(cell.column >= 0 && c >= 0 && c <= cell.column && num > 0)
+        {
+            //重新设置列宽
+            QTextTableFormat f = this->getTalbe()->format();
+            QVector<QTextLength> v = f.columnWidthConstraints();
+            QVector<QTextLength> nv;
+            for(int i = 0;i < v.count();i++)
+            {
+                if(v.at(i).type() == QTextLength::PercentageLength)
+                {
+                    QTextLength l(QTextLength::PercentageLength,v[i].rawValue() * (100.0 / (v.count() + num) / v[i].rawValue()));
+                    nv.push_back(l);
+                }
+                else
+                {
+                    nv.push_back(v.at(i));
+                }
+
+                if(back && i == c)
+                {
+                    for(int j = 0;j < num;j++)
+                    {
+                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
+                        nv.push_back(nl);
+                    }
+                }
+                else if(!back && i + 1 == c)
+                {
+                    for(int j = 0;j < num;j++)
+                    {
+                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
+                        nv.push_back(nl);
+                    }
+                }
+
+            }
+
+            f.setColumnWidthConstraints(nv);
+            this->getTalbe()->setFormat(f);
+
+            if(back)
+            {
+                this->getTalbe()->insertColumns(c + 1,num);
+            }
+            else
+            {
+                this->getTalbe()->insertColumns(c,num);
+            }
+        }
+    }
+}

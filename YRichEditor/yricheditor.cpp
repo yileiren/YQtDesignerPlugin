@@ -246,7 +246,7 @@ void YRichEditor::insertTable(const int &r, const int &c, const int &cs, const i
     cursor.endEditBlock();
 }
 
-QTextTable * YRichEditor::getTalbe()
+QTextTable * YRichEditor::getTable()
 {
     QTextCursor cursor = this->textCursor();
     return cursor.currentTable();
@@ -286,7 +286,7 @@ YRichEditor::selectedCells YRichEditor::getSelectedCells()
 
 void YRichEditor::removeRows()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -295,7 +295,7 @@ void YRichEditor::removeRows()
             YRichEditor::selectedCells cells = this->getSelectedCells();
             if(cells.firstRow >= 0 && cells.numRows > 0)
             {
-                this->getTalbe()->removeRows(cells.firstRow,cells.numRows);
+                this->getTable()->removeRows(cells.firstRow,cells.numRows);
             }
         }
         else
@@ -304,7 +304,7 @@ void YRichEditor::removeRows()
             YRichEditor::positionCell cell = this->getPositionCell();
             if(cell.row >= 0)
             {
-                this->getTalbe()->removeRows(cell.row,1);
+                this->getTable()->removeRows(cell.row,1);
             }
         }
     }
@@ -312,15 +312,15 @@ void YRichEditor::removeRows()
 
 void YRichEditor::removeRows(const int &r, const int &num)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->removeRows(r,num);
+        this->getTable()->removeRows(r,num);
     }
 }
 
 void YRichEditor::removeColumns()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -329,7 +329,7 @@ void YRichEditor::removeColumns()
             YRichEditor::selectedCells cells = this->getSelectedCells();
             if(cells.firstColumn >= 0 && cells.numColumns > 0)
             {
-                this->getTalbe()->removeColumns(cells.firstColumn,cells.numColumns);
+                this->getTable()->removeColumns(cells.firstColumn,cells.numColumns);
             }
         }
         else
@@ -338,7 +338,7 @@ void YRichEditor::removeColumns()
             YRichEditor::positionCell cell = this->getPositionCell();
             if(cell.column >= 0)
             {
-                this->getTalbe()->removeColumns(cell.column,1);
+                this->getTable()->removeColumns(cell.column,1);
             }
         }
     }
@@ -346,26 +346,26 @@ void YRichEditor::removeColumns()
 
 void YRichEditor::removeColumns(const int &c, const int &num)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->removeColumns(c,num);
+        this->getTable()->removeColumns(c,num);
     }
 }
 
 void YRichEditor::insertRows(const int &r, const int &num, const bool &back)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         YRichEditor::positionCell cell = this->getPositionCell();
         if(cell.row >= 0 && r >= 0 && r <= cell.row && r > 0)
         {
             if(back)
             {
-                this->getTalbe()->insertRows(r + 1,num);
+                this->getTable()->insertRows(r + 1,num);
             }
             else
             {
-                this->getTalbe()->insertRows(r,num);
+                this->getTable()->insertRows(r,num);
             }
         }
     }
@@ -373,13 +373,13 @@ void YRichEditor::insertRows(const int &r, const int &num, const bool &back)
 
 void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         YRichEditor::positionCell cell = this->getPositionCell();
         if(cell.column >= 0 && c >= 0 && c <= cell.column && num > 0)
         {
             //重新设置列宽
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             QVector<QTextLength> v = f.columnWidthConstraints();
             QVector<QTextLength> nv;
             for(int i = 0;i < v.count();i++)
@@ -414,15 +414,15 @@ void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
             }
 
             f.setColumnWidthConstraints(nv);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
 
             if(back)
             {
-                this->getTalbe()->insertColumns(c + 1,num);
+                this->getTable()->insertColumns(c + 1,num);
             }
             else
             {
-                this->getTalbe()->insertColumns(c,num);
+                this->getTable()->insertColumns(c,num);
             }
         }
     }
@@ -430,10 +430,10 @@ void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
 
 void YRichEditor::setColumnsWidth(const int &width, const QTextLength::Type &type)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         //获取表格列宽
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         QVector<QTextLength> v = f.columnWidthConstraints();
 
         //新列宽
@@ -446,7 +446,7 @@ void YRichEditor::setColumnsWidth(const int &width, const QTextLength::Type &typ
             //选中的列
             YRichEditor::selectedCells cells = this->getSelectedCells();
 
-            for(int i = 0;i < this->getTalbe()->columns();i++)
+            for(int i = 0;i < this->getTable()->columns();i++)
             {
                 if(i >= cells.firstColumn && i < (cells.firstColumn + cells.numColumns))
                 {
@@ -464,7 +464,7 @@ void YRichEditor::setColumnsWidth(const int &width, const QTextLength::Type &typ
             //光标所在行
             YRichEditor::positionCell cell = this->getPositionCell();
 
-            for(int i = 0;i < this->getTalbe()->columns();i++)
+            for(int i = 0;i < this->getTable()->columns();i++)
             {
                 if(i == cell.column)
                 {
@@ -480,15 +480,15 @@ void YRichEditor::setColumnsWidth(const int &width, const QTextLength::Type &typ
 
         //将列宽设置到表格
         f.setColumnWidthConstraints(nv);
-        this->getTalbe()->setFormat(f);
+        this->getTable()->setFormat(f);
     }
 }
 
 QVector<QTextLength> YRichEditor::getColumnsWidth()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        return this->getTalbe()->format().columnWidthConstraints();
+        return this->getTable()->format().columnWidthConstraints();
     }
     else
     {
@@ -499,7 +499,7 @@ QVector<QTextLength> YRichEditor::getColumnsWidth()
 
 void YRichEditor::mergeCells()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -507,50 +507,50 @@ void YRichEditor::mergeCells()
             //选中的列
             YRichEditor::selectedCells cells = this->getSelectedCells();
 
-            this->getTalbe()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
+            this->getTable()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
         }
     }
 }
 
 void YRichEditor::splitCell(const int &r, const int &c, const int &nr, const int &nc)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->splitCell(r,c,nr,nc);
+        this->getTable()->splitCell(r,c,nr,nc);
     }
 }
 
 void YRichEditor::setTableCellsPadding(const int &p)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         if(p >= 0)
         {
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             f.setCellPadding(p);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
         }
     }
 }
 
 void YRichEditor::setTableCellsSpacing(const int &s)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         if(s >= 0)
         {
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             f.setCellSpacing(s);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
         }
     }
 }
 
 int YRichEditor::getTableCellsPadding()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         return f.cellPadding();
     }
     else
@@ -561,9 +561,9 @@ int YRichEditor::getTableCellsPadding()
 
 int YRichEditor::getTableCellsSpacing()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         return f.cellSpacing();
     }
     else
@@ -572,3 +572,25 @@ int YRichEditor::getTableCellsSpacing()
     }
 }
 
+void YRichEditor::setTableBackGroundColor(const QColor &c)
+{
+    if(this->getTable() != NULL)
+    {
+        QTextTableFormat f = this->getTable()->format();
+        f.setBackground(c);
+        this->getTable()->setFormat(f);
+    }
+}
+
+const QColor & YRichEditor::getTableBackGroundColor()
+{
+    if(this->getTable() != NULL)
+    {
+        return this->getTable()->format().background().color();
+    }
+    else
+    {
+        QTextCursor cursor = this->textCursor();
+        return cursor.charFormat().background().color();
+    }
+}

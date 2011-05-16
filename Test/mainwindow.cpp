@@ -85,3 +85,8 @@ void MainWindow::on_pushButton_11_clicked()
     this->ui->textEdit->setTableCellsSpacing(5);
     QMessageBox::information(this,tr("f"),QString("%1").arg(this->ui->textEdit->getTableCellsPadding()),QMessageBox::Ok);
 }
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    this->ui->textEdit->setTableBackGroundColor(QColor(255, 0, 0, 127));
+}

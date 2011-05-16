@@ -200,7 +200,7 @@ public:
      \param cp 表格外边距，默认值是1
      \param a 对其方式，默认是剧中
      \param backGroundColor 背景颜色
-     \sa QTextTable * getTalbe()
+     \sa QTextTable * getTable()
     */
     void insertTable(const int &r, const int &c,const int &cs = 1,const int &cp = 1,
                      const YRichEditor::align &a = YRichEditor::Center,
@@ -214,7 +214,7 @@ public:
                      const YRichEditor::align &a = YRichEditor::Center,
                      const QColor &backGroundColor = QColor(0, 0, 0, 0))
     */
-    QTextTable * getTalbe();
+    QTextTable * getTable();
 
     /*!
      \brief 获取光标所在处单元格的行号和列号，-1表式光标所在处不存在单元格
@@ -350,6 +350,22 @@ public:
      \sa void setTableCellsSpacing(const int &s),int getTableCellsPadding(),void setTableCellsPadding(const int &p)
     */
     int getTableCellsSpacing();
+
+    /*!
+     \brief 设置表格背景色
+
+     \param c 背景色
+     \sa const QColor & getTableBackGroundColor()
+    */
+    void setTableBackGroundColor(const QColor &c);
+
+    /*!
+     \brief 获取表格背景色
+
+     \return 背景色
+     \sa void setTableBackGroundColor(const QColor &c)
+    */
+    const QColor & getTableBackGroundColor();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

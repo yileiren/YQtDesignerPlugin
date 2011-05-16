@@ -106,7 +106,7 @@ public:
      \sa void insertTable(const int &r, const int &c,const int &cs,const int &cp,
                      const YRichEditor::align &a = YRichEditor::Center,
                      const QColor &backGroundColor = QColor(0, 0, 0, 127)),
-                     QTextTable * getTalbe()
+                     QTextTable * getTable()
     */
     void insertTable(const int &r,const int &c);
 
@@ -119,7 +119,7 @@ public:
      \param cp 表格外边距
      \param a 对其方式，默认是剧中
      \param backGroundColor 背景颜色
-     \sa void insertTable(const int &r,const int &c),QTextTable * getTalbe()
+     \sa void insertTable(const int &r,const int &c),QTextTable * getTable()
     */
     void insertTable(const int &r, const int &c,const int &cs,const int &cp,
                      const TestRichEdit::align &a = TestRichEdit::Center,
@@ -134,7 +134,7 @@ public:
                      const YRichEditor::align &a = YRichEditor::Center,
                      const QColor &backGroundColor = QColor(0, 0, 0, 127))
     */
-    QTextTable * getTalbe();
+    QTextTable * getTable();
 
     /*!
      \brief 获取选中的行号集合
@@ -277,6 +277,22 @@ public:
      \sa void setTableCellsSpacing(const int &s),int getTableCellsPadding(),void setTableCellsPadding(const int &p)
     */
     int getTableCellsSpacing();
+
+    /*!
+     \brief 设置表格背景色
+
+     \param c 背景色
+     \sa const QColor & getTableBackGroundColor()
+    */
+    void setTableBackGroundColor(const QColor &c);
+
+    /*!
+     \brief 获取表格背景色
+
+     \return 背景色
+     \sa void setTableBackGroundColor(const QColor &c)
+    */
+    const QColor & getTableBackGroundColor();
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

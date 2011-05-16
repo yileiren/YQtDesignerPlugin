@@ -153,7 +153,7 @@ void TestRichEdit::insertTable(const int &r, const int &c, const int &cs, const 
     cursor.endEditBlock();
 }
 
-QTextTable * TestRichEdit::getTalbe()
+QTextTable * TestRichEdit::getTable()
 {
     QTextCursor cursor = this->textCursor();
     return cursor.currentTable();
@@ -201,7 +201,7 @@ TestRichEdit::selectedCells TestRichEdit::getSelectedCells()
 
 void TestRichEdit::removeRows()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -210,7 +210,7 @@ void TestRichEdit::removeRows()
             TestRichEdit::selectedCells cells = this->getSelectedCells();
             if(cells.firstRow >= 0 && cells.numRows > 0)
             {
-                this->getTalbe()->removeRows(cells.firstRow,cells.numRows);
+                this->getTable()->removeRows(cells.firstRow,cells.numRows);
             }
         }
         else
@@ -219,7 +219,7 @@ void TestRichEdit::removeRows()
             TestRichEdit::positionCell cell = this->getPositionCell();
             if(cell.row >= 0)
             {
-                this->getTalbe()->removeRows(cell.row,1);
+                this->getTable()->removeRows(cell.row,1);
             }
         }
     }
@@ -227,15 +227,15 @@ void TestRichEdit::removeRows()
 
 void TestRichEdit::removeRows(const int &r, const int &num)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->removeRows(r,num);
+        this->getTable()->removeRows(r,num);
     }
 }
 
 void TestRichEdit::removeColumns()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -244,7 +244,7 @@ void TestRichEdit::removeColumns()
             TestRichEdit::selectedCells cells = this->getSelectedCells();
             if(cells.firstColumn >= 0 && cells.numColumns > 0)
             {
-                this->getTalbe()->removeColumns(cells.firstColumn,cells.numColumns);
+                this->getTable()->removeColumns(cells.firstColumn,cells.numColumns);
             }
         }
         else
@@ -253,7 +253,7 @@ void TestRichEdit::removeColumns()
             TestRichEdit::positionCell cell = this->getPositionCell();
             if(cell.column >= 0)
             {
-                this->getTalbe()->removeColumns(cell.column,1);
+                this->getTable()->removeColumns(cell.column,1);
             }
         }
     }
@@ -261,26 +261,26 @@ void TestRichEdit::removeColumns()
 
 void TestRichEdit::removeColumns(const int &c, const int &num)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->removeColumns(c,num);
+        this->getTable()->removeColumns(c,num);
     }
 }
 
 void TestRichEdit::insertRows(const int &r, const int &num, const bool &back)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         TestRichEdit::positionCell cell = this->getPositionCell();
         if(cell.row >= 0 && r >= 0 && r <= cell.row && r > 0)
         {
             if(back)
             {
-                this->getTalbe()->insertRows(r + 1,num);
+                this->getTable()->insertRows(r + 1,num);
             }
             else
             {
-                this->getTalbe()->insertRows(r,num);
+                this->getTable()->insertRows(r,num);
             }
         }
     }
@@ -288,13 +288,13 @@ void TestRichEdit::insertRows(const int &r, const int &num, const bool &back)
 
 void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         TestRichEdit::positionCell cell = this->getPositionCell();
         if(cell.column >= 0 && c >= 0 && c <= cell.column && num > 0)
         {
             //重新设置列宽
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             QVector<QTextLength> v = f.columnWidthConstraints();
             QVector<QTextLength> nv;
             for(int i = 0;i < v.count();i++)
@@ -329,15 +329,15 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
             }
 
             f.setColumnWidthConstraints(nv);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
 
             if(back)
             {
-                this->getTalbe()->insertColumns(c + 1,num);
+                this->getTable()->insertColumns(c + 1,num);
             }
             else
             {
-                this->getTalbe()->insertColumns(c,num);
+                this->getTable()->insertColumns(c,num);
             }
         }
     }
@@ -345,10 +345,10 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
 
 void TestRichEdit::setColumnsWidth(const int &width, const QTextLength::Type &type)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         //获取表格列宽
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         QVector<QTextLength> v = f.columnWidthConstraints();
 
         //新列宽
@@ -361,7 +361,7 @@ void TestRichEdit::setColumnsWidth(const int &width, const QTextLength::Type &ty
             //选中的列
             TestRichEdit::selectedCells cells = this->getSelectedCells();
 
-            for(int i = 0;i < this->getTalbe()->columns();i++)
+            for(int i = 0;i < this->getTable()->columns();i++)
             {
                 if(i >= cells.firstColumn && i < (cells.firstColumn + cells.numColumns))
                 {
@@ -379,7 +379,7 @@ void TestRichEdit::setColumnsWidth(const int &width, const QTextLength::Type &ty
             //光标所在行
             TestRichEdit::positionCell cell = this->getPositionCell();
 
-            for(int i = 0;i < this->getTalbe()->columns();i++)
+            for(int i = 0;i < this->getTable()->columns();i++)
             {
                 if(i == cell.column)
                 {
@@ -395,15 +395,15 @@ void TestRichEdit::setColumnsWidth(const int &width, const QTextLength::Type &ty
 
         //将列宽设置到表格
         f.setColumnWidthConstraints(nv);
-        this->getTalbe()->setFormat(f);
+        this->getTable()->setFormat(f);
     }
 }
 
 QVector<QTextLength> TestRichEdit::getColumnsWidth()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        return this->getTalbe()->format().columnWidthConstraints();
+        return this->getTable()->format().columnWidthConstraints();
     }
     else
     {
@@ -414,7 +414,7 @@ QVector<QTextLength> TestRichEdit::getColumnsWidth()
 
 void TestRichEdit::mergeCells()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         QTextCursor cursor = this->textCursor();
         if(cursor.hasSelection())
@@ -422,50 +422,50 @@ void TestRichEdit::mergeCells()
             //选中的列
             TestRichEdit::selectedCells cells = this->getSelectedCells();
 
-            this->getTalbe()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
+            this->getTable()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
         }
     }
 }
 
 void TestRichEdit::splitCell(const int &r, const int &c, const int &nr, const int &nc)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        this->getTalbe()->splitCell(r,c,nr,nc);
+        this->getTable()->splitCell(r,c,nr,nc);
     }
 }
 
 void TestRichEdit::setTableCellsPadding(const int &p)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         if(p >= 0)
         {
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             f.setCellPadding(p);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
         }
     }
 }
 
 void TestRichEdit::setTableCellsSpacing(const int &s)
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
         if(s >= 0)
         {
-            QTextTableFormat f = this->getTalbe()->format();
+            QTextTableFormat f = this->getTable()->format();
             f.setCellSpacing(s);
-            this->getTalbe()->setFormat(f);
+            this->getTable()->setFormat(f);
         }
     }
 }
 
 int TestRichEdit::getTableCellsPadding()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         return f.cellPadding();
     }
     else
@@ -476,13 +476,36 @@ int TestRichEdit::getTableCellsPadding()
 
 int TestRichEdit::getTableCellsSpacing()
 {
-    if(this->getTalbe() != NULL)
+    if(this->getTable() != NULL)
     {
-        QTextTableFormat f = this->getTalbe()->format();
+        QTextTableFormat f = this->getTable()->format();
         return f.cellSpacing();
     }
     else
     {
         return -1;
+    }
+}
+
+void TestRichEdit::setTableBackGroundColor(const QColor &c)
+{
+    if(this->getTable() != NULL)
+    {
+        QTextTableFormat f = this->getTable()->format();
+        f.setBackground(c);
+        this->getTable()->setFormat(f);
+    }
+}
+
+const QColor & TestRichEdit::getTableBackGroundColor()
+{
+    if(this->getTable() != NULL)
+    {
+        return this->getTable()->format().background().color();
+    }
+    else
+    {
+        QTextCursor cursor = this->textCursor();
+        return cursor.charFormat().background().color();
     }
 }

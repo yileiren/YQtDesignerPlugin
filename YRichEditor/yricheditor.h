@@ -382,6 +382,22 @@ public:
      \sa void setTableCellsBackGroundColor(const QColor &c)
     */
     const QColor & getTableCellBackGroundColor();
+
+    /*!
+     \brief 设置表格对齐方式
+
+     \param a 对齐方式
+     \sa align getTableAlign()
+    */
+    void setTableAlign(const align &a);
+
+    /*!
+     \brief 获取表格对齐方式
+
+     \return 对齐方式
+     \sa void setTableAlign(const align &a)
+    */
+    align getTableAlign();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

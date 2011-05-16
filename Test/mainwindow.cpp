@@ -55,7 +55,7 @@ void MainWindow::on_pushButton_5_clicked(bool checked)
 
 void MainWindow::on_pushButton_6_clicked(bool checked)
 {
-    this->ui->textEdit->alignText(TestRichEdit::Center);
+    this->ui->textEdit->setTableAlign(TestRichEdit::Left);
 }
 
 void MainWindow::on_pushButton_7_clicked(bool checked)
@@ -88,5 +88,10 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_12_clicked()
 {
-    this->ui->textEdit->setTableCellsBackGroundColor(QColor(0, 0, 255, 127));
+    this->ui->textEdit->setColumnsWidth(50,QTextLength::FixedLength);
+}
+
+void MainWindow::on_pushButton_12_clicked(bool checked)
+{
+
 }

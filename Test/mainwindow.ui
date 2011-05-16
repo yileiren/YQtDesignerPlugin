@@ -109,7 +109,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>居中对齐</string>
+     <string>左对齐</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
@@ -197,7 +197,7 @@
      <x>0</x>
      <y>0</y>
      <width>616</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

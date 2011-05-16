@@ -653,3 +653,62 @@ const QColor & YRichEditor::getTableCellBackGroundColor()
         return cursor.charFormat().background().color();
     }
 }
+
+void YRichEditor::setTableAlign(const align &a)
+{
+    if(this->getTable() != NULL)
+    {
+        //获取表格当前格式
+        QTextTableFormat f = this->getTable()->format();
+
+        //设置对其方式
+        if (a == Left)
+            f.setAlignment(Qt::AlignLeft | Qt::AlignAbsolute);
+        else if (a == Center)
+            f.setAlignment(Qt::AlignHCenter);
+        else
+            f.setAlignment(Qt::AlignRight | Qt::AlignAbsolute);
+
+        //将格式设置到表格
+        this->getTable()->setFormat(f);
+    }
+}
+
+YRichEditor::align YRichEditor::getTableAlign()
+{
+    if(this->getTable() != NULL)
+    {
+        //获取表格当前对齐方式
+        Qt::Alignment al = this->getTable()->format().alignment();
+
+        //设置对其方式
+        if (al & Qt::AlignLeft)
+        {
+            return Left;
+        }
+        else if (al & Qt::AlignHCenter)
+        {
+            return Center;
+        }
+        else
+        {
+            return Right;
+        }
+    }
+    else
+    {
+        Qt::Alignment al = this->alignment();
+        if (al & Qt::AlignLeft)
+        {
+            return Left;
+        }
+        else if (al & Qt::AlignHCenter)
+        {
+            return Center;
+        }
+        else
+        {
+            return Right;
+        }
+    }
+}

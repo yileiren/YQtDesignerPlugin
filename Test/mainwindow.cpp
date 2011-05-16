@@ -72,10 +72,16 @@ void MainWindow::on_pushButton_9_clicked(bool checked)
 {
     this->ui->textEdit->mergeCells();
 
-
 }
 
 void MainWindow::on_pushButton_10_clicked(bool checked)
 {
     this->ui->textEdit->splitCell(1,1,2,2);
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    this->ui->textEdit->setTableCellsPadding(5);
+    this->ui->textEdit->setTableCellsSpacing(5);
+    QMessageBox::information(this,tr("f"),QString("%1").arg(this->ui->textEdit->getTableCellsPadding()),QMessageBox::Ok);
 }

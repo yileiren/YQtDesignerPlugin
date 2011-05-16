@@ -519,3 +519,56 @@ void YRichEditor::splitCell(const int &r, const int &c, const int &nr, const int
         this->getTalbe()->splitCell(r,c,nr,nc);
     }
 }
+
+void YRichEditor::setTableCellsPadding(const int &p)
+{
+    if(this->getTalbe() != NULL)
+    {
+        if(p >= 0)
+        {
+            QTextTableFormat f = this->getTalbe()->format();
+            f.setCellPadding(p);
+            this->getTalbe()->setFormat(f);
+        }
+    }
+}
+
+void YRichEditor::setTableCellsSpacing(const int &s)
+{
+    if(this->getTalbe() != NULL)
+    {
+        if(s >= 0)
+        {
+            QTextTableFormat f = this->getTalbe()->format();
+            f.setCellSpacing(s);
+            this->getTalbe()->setFormat(f);
+        }
+    }
+}
+
+int YRichEditor::getTableCellsPadding()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextTableFormat f = this->getTalbe()->format();
+        return f.cellPadding();
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int YRichEditor::getTableCellsSpacing()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextTableFormat f = this->getTalbe()->format();
+        return f.cellSpacing();
+    }
+    else
+    {
+        return -1;
+    }
+}
+

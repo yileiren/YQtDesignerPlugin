@@ -434,3 +434,55 @@ void TestRichEdit::splitCell(const int &r, const int &c, const int &nr, const in
         this->getTalbe()->splitCell(r,c,nr,nc);
     }
 }
+
+void TestRichEdit::setTableCellsPadding(const int &p)
+{
+    if(this->getTalbe() != NULL)
+    {
+        if(p >= 0)
+        {
+            QTextTableFormat f = this->getTalbe()->format();
+            f.setCellPadding(p);
+            this->getTalbe()->setFormat(f);
+        }
+    }
+}
+
+void TestRichEdit::setTableCellsSpacing(const int &s)
+{
+    if(this->getTalbe() != NULL)
+    {
+        if(s >= 0)
+        {
+            QTextTableFormat f = this->getTalbe()->format();
+            f.setCellSpacing(s);
+            this->getTalbe()->setFormat(f);
+        }
+    }
+}
+
+int TestRichEdit::getTableCellsPadding()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextTableFormat f = this->getTalbe()->format();
+        return f.cellPadding();
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int TestRichEdit::getTableCellsSpacing()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextTableFormat f = this->getTalbe()->format();
+        return f.cellSpacing();
+    }
+    else
+    {
+        return -1;
+    }
+}

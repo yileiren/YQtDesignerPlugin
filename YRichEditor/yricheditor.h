@@ -318,6 +318,38 @@ public:
      \sa void mergeCells()
     */
     void splitCell(const int &r,const int &c,const int &nr,const int &nc);
+
+    /*!
+     \brief 设置单元格内间距
+
+     \param p 间距
+     \sa int getTableCellsPadding(),void setTableCellsSpacing(const int &s),int getTableCellsSpacing()
+    */
+    void setTableCellsPadding(const int &p);
+
+    /*!
+     \brief 获取单元格内间距，如果没有选中表格返回-1
+
+     \return 间距
+     \sa void setTableCellsPadding(const int &p),void setTableCellsSpacing(const int &s),int getTableCellsSpacing()
+    */
+    int getTableCellsPadding();
+
+    /*!
+     \brief 设置单元格外间距
+
+     \param s 间距
+     \sa int getTableCellsSpacing(),int getTableCellsPadding(),void setTableCellsPadding(const int &p)
+    */
+    void setTableCellsSpacing(const int &s);
+
+    /*!
+     \brief 获取单元格外间距，如果没有选中表格返回-1
+
+     \return 间距
+     \sa void setTableCellsSpacing(const int &s),int getTableCellsPadding(),void setTableCellsPadding(const int &p)
+    */
+    int getTableCellsSpacing();
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

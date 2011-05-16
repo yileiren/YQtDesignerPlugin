@@ -88,5 +88,5 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_12_clicked()
 {
-    this->ui->textEdit->setTableBackGroundColor(QColor(255, 0, 0, 127));
+    this->ui->textEdit->setTableCellsBackGroundColor(QColor(0, 0, 255, 127));
 }

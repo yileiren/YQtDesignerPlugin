@@ -293,6 +293,22 @@ public:
      \sa void setTableBackGroundColor(const QColor &c)
     */
     const QColor & getTableBackGroundColor();
+
+    /*!
+     \brief 设置选中单元格的背景色，如果没有选中的单元格，设置光标所在位置
+
+     \param c 颜色
+     \sa const QColor & getTableCellBackGroundColor()
+    */
+    void setTableCellsBackGroundColor(const QColor &c);
+
+    /*!
+     \brief 获取光标所在位置的单元格背景色
+
+     \return 颜色
+     \sa void setTableCellsBackGroundColor(const QColor &c)
+    */
+    const QColor & getTableCellBackGroundColor();
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

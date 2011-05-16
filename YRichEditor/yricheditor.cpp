@@ -594,3 +594,62 @@ const QColor & YRichEditor::getTableBackGroundColor()
         return cursor.charFormat().background().color();
     }
 }
+
+void YRichEditor::setTableCellsBackGroundColor(const QColor &c)
+{
+    if(this->getTable() != NULL)
+    {
+        //设置格式
+        QTextCharFormat f;
+        f.setBackground(c);
+
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的单元格
+            YRichEditor::selectedCells cells = this->getSelectedCells();
+            if(cells.firstColumn >= 0 && cells.numColumns > 0 && cells.firstRow >= 0 && cells.numRows > 0)
+            {
+                for(int i = cells.firstColumn;i < (cells.firstColumn + cells.numColumns);i++)
+                {
+                    for(int j = cells.firstRow;j < (cells.firstRow + cells.numRows);j++)
+                    {
+                        this->getTable()->cellAt(j,i).setFormat(f);
+                    }
+                }
+            }
+        }
+        else
+        {
+            //光标所在单元格
+            YRichEditor::positionCell cell = this->getPositionCell();
+            if(cell.column >= 0 && cell.row >= 0)
+            {
+                this->getTable()->cellAt(cell.row,cell.column).setFormat(f);
+            }
+        }
+    }
+}
+
+const QColor & YRichEditor::getTableCellBackGroundColor()
+{
+    if(this->getTable() != NULL)
+    {
+        //光标所在单元格
+        YRichEditor::positionCell cell = this->getPositionCell();
+        if(cell.row >= 0 && cell.column >= 0)
+        {
+            return this->getTable()->cellAt(cell.row,cell.column).format().background().color();
+        }
+        else
+        {
+            QTextCursor cursor = this->textCursor();
+            return cursor.charFormat().background().color();
+        }
+    }
+    else
+    {
+        QTextCursor cursor = this->textCursor();
+        return cursor.charFormat().background().color();
+    }
+}

@@ -490,4 +490,9 @@ QVector<QTextLength> YRichEditor::getColumnsWidth()
     {
         return this->getTalbe()->format().columnWidthConstraints();
     }
+    else
+    {
+        QVector<QTextLength> v;
+        return v;
+    }
 }

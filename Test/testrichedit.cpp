@@ -405,4 +405,9 @@ QVector<QTextLength> TestRichEdit::getColumnsWidth()
     {
         return this->getTalbe()->format().columnWidthConstraints();
     }
+    else
+    {
+        QVector<QTextLength> v;
+        return v;
+    }
 }

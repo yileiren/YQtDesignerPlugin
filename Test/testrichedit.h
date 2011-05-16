@@ -210,6 +210,23 @@ public:
          void insertRows(const int &r,const int &num,const bool &back = true)
     */
     void insertColumns(const int &c,const int &num,const bool &back = true);
+
+    /*!
+     \brief 设置选中列的列宽
+
+     \param width 宽度值
+     \param type 数值类型
+     \sa QVector<QTextLength> getColumnsWidth()
+    */
+    void setColumnsWidth(const int &width,const QTextLength::Type &type);
+
+    /*!
+     \brief 获取列宽
+
+     \return 列宽向量
+     \sa void setColumnsWidth(const int &width,const QTextLength::Type &type)
+    */
+    QVector<QTextLength> getColumnsWidth();
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

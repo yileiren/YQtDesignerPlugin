@@ -342,3 +342,67 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
         }
     }
 }
+
+void TestRichEdit::setColumnsWidth(const int &width, const QTextLength::Type &type)
+{
+    if(this->getTalbe() != NULL)
+    {
+        //获取表格列宽
+        QTextTableFormat f = this->getTalbe()->format();
+        QVector<QTextLength> v = f.columnWidthConstraints();
+
+        //新列宽
+        QVector<QTextLength> nv;
+
+        //设置列宽
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的列
+            TestRichEdit::selectedCells cells = this->getSelectedCells();
+
+            for(int i = 0;i < this->getTalbe()->columns();i++)
+            {
+                if(i >= cells.firstColumn && i < (cells.firstColumn + cells.numColumns))
+                {
+                    QTextLength l(type,width);
+                    nv.push_back(l);
+                }
+                else
+                {
+                    nv.push_back(v.at(i));
+                }
+            }
+        }
+        else
+        {
+            //光标所在行
+            TestRichEdit::positionCell cell = this->getPositionCell();
+
+            for(int i = 0;i < this->getTalbe()->columns();i++)
+            {
+                if(i == cell.column)
+                {
+                    QTextLength l(type,width);
+                    nv.push_back(l);
+                }
+                else
+                {
+                    nv.push_back(v.at(i));
+                }
+            }
+        }
+
+        //将列宽设置到表格
+        f.setColumnWidthConstraints(nv);
+        this->getTalbe()->setFormat(f);
+    }
+}
+
+QVector<QTextLength> TestRichEdit::getColumnsWidth()
+{
+    if(this->getTalbe() != NULL)
+    {
+        return this->getTalbe()->format().columnWidthConstraints();
+    }
+}

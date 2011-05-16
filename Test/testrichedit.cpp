@@ -411,3 +411,26 @@ QVector<QTextLength> TestRichEdit::getColumnsWidth()
         return v;
     }
 }
+
+void TestRichEdit::mergeCells()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的列
+            TestRichEdit::selectedCells cells = this->getSelectedCells();
+
+            this->getTalbe()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
+        }
+    }
+}
+
+void TestRichEdit::splitCell(const int &r, const int &c, const int &nr, const int &nc)
+{
+    if(this->getTalbe() != NULL)
+    {
+        this->getTalbe()->splitCell(r,c,nr,nc);
+    }
+}

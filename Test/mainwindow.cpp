@@ -70,5 +70,12 @@ void MainWindow::on_pushButton_8_clicked(bool checked)
 
 void MainWindow::on_pushButton_9_clicked(bool checked)
 {
-    this->ui->textEdit->setColumnsWidth(30,QTextLength::PercentageLength);
+    this->ui->textEdit->mergeCells();
+
+
+}
+
+void MainWindow::on_pushButton_10_clicked(bool checked)
+{
+    this->ui->textEdit->splitCell(1,1,2,2);
 }

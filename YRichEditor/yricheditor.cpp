@@ -496,3 +496,26 @@ QVector<QTextLength> YRichEditor::getColumnsWidth()
         return v;
     }
 }
+
+void YRichEditor::mergeCells()
+{
+    if(this->getTalbe() != NULL)
+    {
+        QTextCursor cursor = this->textCursor();
+        if(cursor.hasSelection())
+        {
+            //选中的列
+            YRichEditor::selectedCells cells = this->getSelectedCells();
+
+            this->getTalbe()->mergeCells(cells.firstRow,cells.firstColumn,cells.numRows,cells.numColumns);
+        }
+    }
+}
+
+void YRichEditor::splitCell(const int &r, const int &c, const int &nr, const int &nc)
+{
+    if(this->getTalbe() != NULL)
+    {
+        this->getTalbe()->splitCell(r,c,nr,nc);
+    }
+}

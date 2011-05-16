@@ -227,6 +227,24 @@ public:
      \sa void setColumnsWidth(const int &width,const QTextLength::Type &type)
     */
     QVector<QTextLength> getColumnsWidth();
+
+    /*!
+     \brief 合并选中的单元格
+
+     \sa void splitCell(const int &r,const int &c,const int &nr,const int &nc)
+    */
+    void mergeCells();
+
+    /*!
+     \brief 拆分指定的单元格，被拆分的单元格应当是合并过的单元格
+
+     \param r 起始行号
+     \param c 起始列号
+     \param nr 拆分行数
+     \param nc 拆分列数
+     \sa void mergeCells()
+    */
+    void splitCell(const int &r,const int &c,const int &nr,const int &nc);
 private:
     /*!
      \brief 合并选中的单词样式，如果没有选中，则合并光标所在位置的单词样式。

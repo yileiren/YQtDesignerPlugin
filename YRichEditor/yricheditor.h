@@ -398,6 +398,13 @@ public:
      \sa void setTableAlign(const align &a)
     */
     align getTableAlign();
+
+    /*!
+     \brief 在光标位置插入图片
+
+     \param image 图片路径
+    */
+    void insertImage(const QString &image);
 private:
     /*!
      \brief 合并选中的文本样式，如果没有选中，则合并光标所在位置的文本样式。

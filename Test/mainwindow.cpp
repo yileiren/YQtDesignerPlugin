@@ -55,7 +55,7 @@ void MainWindow::on_pushButton_5_clicked(bool checked)
 
 void MainWindow::on_pushButton_6_clicked(bool checked)
 {
-    this->ui->textEdit->setTableAlign(TestRichEdit::Left);
+    this->ui->textEdit->alignText(TestRichEdit::Center);
 }
 
 void MainWindow::on_pushButton_7_clicked(bool checked)
@@ -88,7 +88,7 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_12_clicked()
 {
-    this->ui->textEdit->setColumnsWidth(50,QTextLength::FixedLength);
+    this->ui->textEdit->insertImage(tr("C:/Users/Administrator/Pictures/EYE.jpg"));
 }
 
 void MainWindow::on_pushButton_12_clicked(bool checked)

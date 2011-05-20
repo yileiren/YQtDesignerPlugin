@@ -712,3 +712,8 @@ YRichEditor::align YRichEditor::getTableAlign()
         }
     }
 }
+
+void YRichEditor::insertImage(const QString &image)
+{
+    this->textCursor().insertImage(image);
+}

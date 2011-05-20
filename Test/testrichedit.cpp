@@ -2,6 +2,7 @@
 
 #include <QTextFrame>
 #include <QTextTableCell>
+#include <QTextImageFormat>
 
 TestRichEdit::TestRichEdit(QWidget *parent) :
     QTextEdit(parent)
@@ -628,4 +629,9 @@ TestRichEdit::align TestRichEdit::getTableAlign()
             return Right;
         }
     }
+}
+
+void TestRichEdit::insertImage(const QString &image)
+{
+    this->textCursor().insertImage(image);
 }

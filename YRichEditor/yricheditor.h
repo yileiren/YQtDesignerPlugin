@@ -12,7 +12,7 @@ class YRichEditor : public QTextEdit
     Q_OBJECT
 
 public:
-    YRichEditor(QWidget *parent = 0);
+    explicit YRichEditor(QWidget *parent = 0);
 
     /*!
      \brief 文本对齐方式

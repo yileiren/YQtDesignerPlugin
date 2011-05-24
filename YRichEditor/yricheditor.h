@@ -2,12 +2,13 @@
 #define YRICHEDITOR_H
 
 #include <QTextEdit>
+#include <QtDesigner/QDesignerExportWidget>
 
 /*!
  \brief 富文本编辑控件
 
 */
-class YRichEditor : public QTextEdit
+class QDESIGNER_WIDGET_EXPORT YRichEditor : public QTextEdit
 {
     Q_OBJECT
 

@@ -46,12 +46,12 @@ QIcon YRichEditorPlugin::icon() const
 
 QString YRichEditorPlugin::toolTip() const
 {
-    return QLatin1String("富文本编辑控件");
+    return QLatin1String("富文本编辑器控件");
 }
 
 QString YRichEditorPlugin::whatsThis() const
 {
-    return QLatin1String("富文本编辑控件");
+    return QLatin1String("富文本编辑器控件");
 }
 
 bool YRichEditorPlugin::isContainer() const

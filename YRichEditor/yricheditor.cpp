@@ -149,9 +149,13 @@ YRichEditor::align YRichEditor::getTextAlign()
     {
         return Center;
     }
-    else
+    else if (al & Qt::AlignRight)
     {
         return Right;
+    }
+    else
+    {
+        return Center;
     }
 }
 

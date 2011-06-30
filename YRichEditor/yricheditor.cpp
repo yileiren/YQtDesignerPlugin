@@ -155,7 +155,7 @@ YRichEditor::align YRichEditor::getTextAlign()
     }
     else
     {
-        return Center;
+        return Left;
     }
 }
 

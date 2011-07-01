@@ -197,16 +197,19 @@ void YRichEditor::textStyle(const QTextListFormat::Style &f)
 QTextListFormat::Style YRichEditor::getTextStyle()
 {
     QTextCursor cursor = this->textCursor();
+    QTextListFormat::Style style;
     cursor.beginEditBlock();
 
     if (cursor.currentList())
     {
-        return cursor.currentList()->format().style();
+        style = cursor.currentList()->format().style();
     }
     else
     {
-        return QTextListFormat::ListStyleUndefined;
+        style = QTextListFormat::ListStyleUndefined;
     }
+    cursor.endEditBlock();
+    return style;
 }
 
 void YRichEditor::insertTable(const int &r, const int &c, const int &cs, const int &cp,

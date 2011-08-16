@@ -332,7 +332,7 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
 
             //设置列宽
             f.setColumnWidthConstraints(nv);
-            this->getTable()->setFormat(f);
+
 
             if(back)
             {
@@ -342,6 +342,8 @@ void TestRichEdit::insertColumns(const int &c, const int &num, const bool &back)
             {
                 this->getTable()->insertColumns(c,num);
             }
+
+            this->getTable()->setFormat(f);
         }
     }
 }

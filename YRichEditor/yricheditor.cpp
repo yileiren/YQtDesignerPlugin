@@ -383,45 +383,18 @@ void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
     if(this->getTable() != NULL)
     {
         //YRichEditor::positionCell cell = this->getPositionCell();
-        if(c >= 0 && c <= this->getTable()->columns() && num > 0)
+        if(c >= 0 && c < this->getTable()->columns() && num > 0)
         {
             //重新设置列宽
             QTextTableFormat f = this->getTable()->format();
-            QVector<QTextLength> v = f.columnWidthConstraints();
-            QVector<QTextLength> nv;
-            for(int i = 0;i < v.count();i++)
+            //设置默认列宽
+            QVector<QTextLength> constraints;
+            for(int i = 0;i < (this->getTable()->columns() + num);i++)
             {
-                if(v.at(i).type() == QTextLength::PercentageLength)
-                {
-                    QTextLength l(QTextLength::PercentageLength,v[i].rawValue() * (100.0 / (v.count() + num) / v[i].rawValue()));
-                    nv.push_back(l);
-                }
-                else
-                {
-                    nv.push_back(v.at(i));
-                }
-
-                if(back && i == c)
-                {
-                    for(int j = 0;j < num;j++)
-                    {
-                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
-                        nv.push_back(nl);
-                    }
-                }
-                else if(!back && i + 1 == c)
-                {
-                    for(int j = 0;j < num;j++)
-                    {
-                        QTextLength nl(QTextLength::PercentageLength,100.0 / (v.count() + num));
-                        nv.push_back(nl);
-                    }
-                }
-
+                constraints << QTextLength(QTextLength::PercentageLength, 100.0 / (this->getTable()->columns() + num));
             }
 
-            f.setColumnWidthConstraints(nv);
-            this->getTable()->setFormat(f);
+            f.setColumnWidthConstraints(constraints);
 
             if(back)
             {
@@ -431,6 +404,8 @@ void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
             {
                 this->getTable()->insertColumns(c,num);
             }
+
+            this->getTable()->setFormat(f);
         }
     }
 }

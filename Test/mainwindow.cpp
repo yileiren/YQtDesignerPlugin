@@ -65,7 +65,7 @@ void MainWindow::on_pushButton_7_clicked(bool checked)
 
 void MainWindow::on_pushButton_8_clicked(bool checked)
 {
-    this->ui->textEdit->insertTable(3,4,1,1);
+    this->ui->textEdit->insertColumns(this->ui->textEdit->getPositionCell().column,2);
 }
 
 void MainWindow::on_pushButton_9_clicked(bool checked)
@@ -88,10 +88,15 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_12_clicked()
 {
-    this->ui->textEdit->insertImage(tr("C:/Users/Administrator/Pictures/EYE.jpg"));
+    this->ui->textEdit->toHtml();
 }
 
 void MainWindow::on_pushButton_12_clicked(bool checked)
+{
+
+}
+
+void MainWindow::on_pushButton_8_clicked()
 {
 
 }

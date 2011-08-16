@@ -363,8 +363,8 @@ void YRichEditor::insertRows(const int &r, const int &num, const bool &back)
 {
     if(this->getTable() != NULL)
     {
-        YRichEditor::positionCell cell = this->getPositionCell();
-        if(cell.row >= 0 && r >= 0 && r <= cell.row && r > 0)
+        //YRichEditor::positionCell cell = this->getPositionCell();
+        if(r >= 0 && r < this->getTable()->rows() && num > 0)
         {
             if(back)
             {
@@ -382,8 +382,8 @@ void YRichEditor::insertColumns(const int &c, const int &num, const bool &back)
 {
     if(this->getTable() != NULL)
     {
-        YRichEditor::positionCell cell = this->getPositionCell();
-        if(cell.column >= 0 && c >= 0 && c <= cell.column && num > 0)
+        //YRichEditor::positionCell cell = this->getPositionCell();
+        if(c >= 0 && c <= this->getTable()->columns() && num > 0)
         {
             //重新设置列宽
             QTextTableFormat f = this->getTable()->format();

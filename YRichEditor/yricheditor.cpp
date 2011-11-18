@@ -1,4 +1,4 @@
-#include "yricheditor.h"
+﻿#include "yricheditor.h"
 
 #include <QTextList>
 #include <QTextTableCell>

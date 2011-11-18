@@ -1,4 +1,4 @@
-#ifndef YRICHEDITOR_H
+﻿#ifndef YRICHEDITOR_H
 #define YRICHEDITOR_H
 
 #include <QTextEdit>
